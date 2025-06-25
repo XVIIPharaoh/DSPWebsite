@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weekly TBA Log</title>
+  <link rel="stylesheet" href="WeeklyTBA.css" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/xlsx.full.min.js"></script>
+
+  <script src="WeeklyTBA.js" defer></script>
+</head>
+<body>
+  <div id="app" class="layout">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h1>Gold Wing Delivery</h1>
+      <a href="HomePage.html">Home</a>
+      <a href="RescueLog.html">Rescue Log</a>
+      <a href="WeeklyTBA.html">Weekly TBA's</a>
+      <a href="#">Contact</a>
+      <button @click="signOut" class="signout-btn">Sign Out</button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header>
+        <h2>Weekly TBA Log</h2>
+      </header>
+
+      <main>
+        <!-- Your file input and table code goes here -->
+        <section class="upload-section">
+          <h3>Upload Excel File</h3>
+          <input type="file" @change="handleFileUpload" accept=".xlsx" />
+
+          <div v-if="parsedData.length">
+            <h4>Uploaded TBA Table</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Driver</th>
+                  <th>TBA</th>
+                  <th>Status</th>
+                  <th>Time</th>
+                  <th>Route Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(row, i) in parsedData" :key="i">
+                  <td>{{ row.DA }}</td>
+                  <td>{{ row.TBA }}</td>
+                  <td>{{ row.Status }}</td>
+                  <td>{{ row.Time }}</td>
+                  <td>{{ row.RouteNumber }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2025 Gold Wing Delivery</p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

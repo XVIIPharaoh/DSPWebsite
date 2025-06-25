@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Basic Homepage</title>
+  <link rel="stylesheet" href="HomePage.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <script src="HomePage.js" defer></script> <!-- separate script for homepage -->
+</head>
+<body>
+  <div id="app" class="layout">
+    <nav class="sidebar">
+      <h1>Gold Wing Delivery</h1>
+      <a href="HomePage.html">Home</a>
+      <a href="RescueLog.html">Rescue Log</a>
+      <a href="WeeklyTBA.html">Weekly TBA's</a>
+      <a href="#">Contact</a>
+      <button @click="signOut" class="signout-btn">Sign Out</button>
+    </nav>
+
+
+    <div class="main-content">
+      <header>
+        <h2>Welcome!</h2>
+      </header>
+
+      <main>
+        <section class="intro">
+          <h2>Hello!</h2>
+          <p>This is a basic homepage built with HTML, CSS, JavaScript, and Vue.js.</p>
+        </section>
+
+        <section class="interactive">
+          <h3>Say something:</h3>
+          <input v-model="userMessage" placeholder="Type a message">
+          <p>You said: <strong>{{ userMessage }}</strong></p>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2025 Gold Wing Delivery</p>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
+

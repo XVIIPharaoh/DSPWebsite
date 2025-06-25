@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login Screen</title>
+  <link rel="stylesheet" href="LogIn.css" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <script src="LogInScript.js" defer></script>
+</head>
+<body>
+  <div id="app" class="login-container">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username" v-model="username" />
+    <input type="password" placeholder="Password" v-model="password" />
+    <button @click="login">Log In</button>
+    <p class="status">{{ statusMessage }}</p>
+  </div>
+</body>
+</html>
