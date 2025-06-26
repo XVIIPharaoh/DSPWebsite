@@ -1,39 +1,61 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+
+  /* --- Background Styles --- */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('DSPImages/pexels-tracehudson-10893475.jpg');
+  
+  /* This is the new line that fixes the zooming issue */
+  background-size: cover;
+
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .login-container {
-  background-color: white;
-  padding: 30px 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 300px;
+  /* Slightly transparent white for a "frosted glass" effect */
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 350px;
   text-align: center;
+}
+
+.login-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #ccc;
+  font-size: 16px;
 }
 
 button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #4a90e2;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
@@ -42,5 +64,6 @@ button:hover {
 
 .status {
   margin-top: 15px;
-  color: green;
+  color: #d9363e; /* Changed to red for error messages */
+  font-weight: bold;
 }
