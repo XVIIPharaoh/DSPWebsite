@@ -3,61 +3,262 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rescue Log</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Rescue Log - Gold Wing Delivery</title>
+  
+  <!-- Google Fonts (same as homepage) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Custom styles for the new layout -->
+  <style>
+    :root {
+      --text-color: #333333;
+      --background-color: #ffffff;
+      --primary-color: #007bff;
+      --secondary-color: #f8f9fa;
+      --border-color: #dee2e6;
+      --success-color: #28a745;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Lora', serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: var(--background-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .top-nav .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: var(--text-color);
+      margin-left: 30px;
+      font-size: 16px;
+    }
+    
+    .signout-btn {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      height: 40vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/DSPWebsite/DSPImages/anirudh-wKeZstqxKTQ-unsplash.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero-section h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 42px;
+    }
+    
+    /* Main content area */
+    .content-wrapper {
+        padding: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* Save button and status message */
+    .save-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px; /* Added margin for spacing */
+    }
+
+    .save-all-btn {
+        padding: 12px 25px;
+        background-color: var(--success-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+    .save-all-btn:hover {
+        background-color: #218838;
+    }
+
+    .status-message {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--success-color);
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .status-message.visible {
+        opacity: 1;
+    }
+
+    /* Log entry cards */
+    .log-entry-card {
+        background-color: var(--secondary-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+    
+    .log-entry-card h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 22px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .section-inputs {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1.5fr;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    @media (max-width: 768px) {
+        .section-inputs {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .section-inputs label, .time-input-group label {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+    }
+    
+    .section-inputs input,
+    .section-inputs textarea,
+    .section-inputs select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid var(--border-color);
+        font-family: 'Lora', serif;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+    
+    .time-input-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .time-input-group button {
+        margin-top: 5px;
+        padding: 10px;
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        flex-shrink: 0;
+    }
+    
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 60px;
+        background-color: var(--secondary-color);
+        border-top: 1px solid var(--border-color);
+    }
+  </style>
+
   <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <!-- This points to the JS file with save/load logic -->
   <script src="RescueLog.js" defer></script>
 </head>
 <body>
-  <div id="app" class="layout">
-    <!-- Sidebar Nav Menu -->
-    <nav class="sidebar">
-      <h1>Gold Wing Delivery</h1>
-      <a href="HomePage.html">Home</a>
-      <a href="RescueLog.html">Rescue Log</a>
-       <a href="WeeklyTBA.html">Weekly TBA's</a>
-      <button @click="signOut" class="signout-btn">Sign Out</button>
+  <div id="app">
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <a href="HomePage.html" class="logo">Gold Wing</a>
+        <div class="nav-links">
+            <a href="HomePage.html">Home</a>
+            <a href="RescueLog.html">Rescue Log</a>
+            <a href="WeeklyTBA.html">Weekly TBA's</a>
+            <a href="#">Contact</a>
+            <button @click="signOut" class="signout-btn">Sign Out</button>
+        </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="main-content">
-      <header>
-        <h2>Rescue Log</h2>
-      </header>
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <h1>Daily Rescue Log</h1>
+    </header>
 
-      <main>
-        <!-- Your 17 sections go here -->
-        <section v-for="(label, index) in sections" :key="index">
-          <h2>{{ label }}</h2>
-
-          <div class="section-inputs">
-            <label>
-               Time:
-              <input type="time" v-model="entries[index].time" class="time-input" />
-               <button type="button" @click="setCurrentTime(index)">Now</button>
-            </label>
-
-
-            <label>
-              Notes:
-              <textarea v-model="entries[index].notes" rows="2" placeholder="Enter notes here..."></textarea>
-            </label>
-
-            <label>
-              Dispatch on Duty:
-              <select v-model="entries[index].dispatcher">
-                <option disabled value="">Select...</option>
-                <option v-for="name in dispatchers" :key="name">{{ name }}</option>
-              </select>
-            </label>
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+      
+      <div v-for="(label, index) in sections" :key="index" class="log-entry-card">
+        <h2>{{ label }}</h2>
+        <div class="section-inputs">
+          <div class="time-input-group">
+            <label>Time:<input type="time" v-model="entries[index].time"></label>
+            <button type="button" @click="setCurrentTime(index)">Now</button>
           </div>
-        </section>
-      </main>
+          <label>Notes:<textarea v-model="entries[index].notes" rows="1" placeholder="Enter notes..."></textarea></label>
+          <label>Dispatch on Duty:
+            <select v-model="entries[index].dispatcher">
+              <option disabled value="">Select Dispatcher...</option>
+              <option v-for="name in dispatchers" :key="name">{{ name }}</option>
+            </select>
+          </label>
+        </div>
+      </div>
 
-      <footer>
-        <p>&copy; 2025 Gold Wing Delivery</p>
-      </footer>
-    </div>
+      <!-- Save button has been moved here -->
+      <div class="save-footer">
+        <button @click="saveAllEntries" class="save-all-btn">Save All Entries</button>
+        <div class="status-message" :class="{ visible: showStatusMessage }">
+            Log saved successfully!
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
+    </footer>
   </div>
 </body>
 </html>

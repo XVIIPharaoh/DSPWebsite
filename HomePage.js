@@ -3,13 +3,21 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      userMessage: ''
+      liveFeedItems: []
     };
   },
   methods: {
     signOut() {
-      // Redirect back to login page
       window.location.href = 'LogIn.html';
+    },
+    loadLiveFeed() {
+      const savedData = localStorage.getItem('rescueLogData');
+      if (savedData) {
+        this.liveFeedItems = JSON.parse(savedData);
+      }
     }
+  },
+  mounted() {
+    this.loadLiveFeed();
   }
 }).mount('#app');

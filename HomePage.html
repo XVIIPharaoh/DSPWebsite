@@ -5,25 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gold Wing Delivery</title>
   
-  <!-- Google Fonts for better typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
   
-  <!-- Custom styles for the new Squarespace-inspired layout -->
   <style>
     :root {
-      /* Define a new, more refined color palette */
       --text-color: #333333;
       --background-color: #ffffff;
-      --primary-color: #007bff; /* A modern, clean blue */
-      --secondary-color: #f8f9fa; /* Light grey for section backgrounds */
+      --primary-color: #007bff;
+      --secondary-color: #f8f9fa;
       --border-color: #dee2e6;
     }
 
     body {
       margin: 0;
-      font-family: 'Lora', serif; /* Elegant serif for body copy */
+      font-family: 'Lora', serif;
       background-color: var(--background-color);
       color: var(--text-color);
     }
@@ -52,11 +49,6 @@
       color: var(--text-color);
       margin-left: 30px;
       font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary-color);
     }
     
     .signout-btn {
@@ -69,7 +61,7 @@
         font-family: 'Montserrat', sans-serif;
     }
 
-    /* Hero Section with Background Image */
+    /* Hero Section */
     .hero-section {
       height: 60vh;
       background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2070&auto=format&fit=crop');
@@ -87,18 +79,15 @@
     .hero-section h1 {
       font-family: 'Montserrat', sans-serif;
       font-size: 48px;
-      font-weight: 700;
-      margin: 0;
     }
 
     .hero-section p {
-      font-family: 'Lora', serif;
       font-size: 20px;
       max-width: 600px;
-      margin: 20px 0 0;
+      margin-top: 20px;
     }
 
-    /* Content Section */
+    /* Main Content */
     .content-wrapper {
         padding: 60px 40px;
     }
@@ -113,6 +102,7 @@
         font-size: 32px;
     }
 
+    /* Card Container for links */
     .card-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -128,7 +118,7 @@
       text-decoration: none;
       color: inherit;
       transition: transform 0.3s, box-shadow 0.3s;
-      overflow: hidden; /* To contain the image */
+      overflow: hidden;
       display: flex;
       flex-direction: column;
     }
@@ -153,85 +143,164 @@
       font-size: 22px;
     }
 
-    .info-card p {
-      line-height: 1.7;
+    /* --- NEW LIVE FEED STYLES --- */
+    .live-feed-section {
+        background-color: var(--secondary-color);
+        margin-top: 60px;
+        padding: 40px 0;
+    }
+
+    .feed-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    .feed-ticker-wrap {
+        height: 40px; /* Height of a single feed item */
+        overflow: hidden;
+        position: relative;
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid var(--border-color);
+    }
+    
+    .feed-ticker-wrap ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        position: absolute;
+        width: 100%;
+        animation: ticker-scroll 20s linear infinite; /* Adjust duration for speed */
+    }
+
+    .feed-ticker-wrap:hover ul {
+        animation-play-state: paused; /* Pause scrolling on hover */
+    }
+
+    .feed-ticker-wrap li {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .feed-ticker-wrap .feed-section {
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    
+    .feed-ticker-wrap .feed-notes {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: 0 15px;
+    }
+    
+    .feed-ticker-wrap .feed-dispatcher {
+        color: #6c757d;
+    }
+
+    @keyframes ticker-scroll {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-100%); }
     }
     
     footer {
         text-align: center;
         padding: 40px;
-        margin-top: 60px;
         background-color: var(--secondary-color);
         border-top: 1px solid var(--border-color);
     }
-
   </style>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <!-- IMPORTANT: This now points to the new JS file -->
   <script src="HomePage.js" defer></script>
 </head>
 <body>
   <div id="app">
-    <!-- New Top Navigation Bar -->
+    <!-- Top Navigation -->
     <nav class="top-nav">
-      <a href="#" class="logo">Gold Wing</a>
-      <div class="nav-links">
-        <a href="HomePage-Squarespace.html">Home</a>
-        <a href="RescueLog.html">Rescue Log</a>
-        <a href="WeeklyTBA.html">Weekly TBA's</a>
-        <a href="#">Contact</a>
-        <button @click="signOut" class="signout-btn">Sign Out</button>
-      </div>
+        <a href="HomePage.html" class="logo">Gold Wing</a>
+        <div class="nav-links">
+            <a href="HomePage.html">Home</a>
+            <a href="RescueLog.html">Rescue Log</a>
+            <a href="WeeklyTBA.html">Weekly TBA's</a>
+            <a href="#">Contact</a>
+            <button @click="signOut" class="signout-btn">Sign Out</button>
+        </div>
     </nav>
 
-    <!-- New Hero Section -->
+    <!-- Hero Section -->
     <header class="hero-section">
       <h1>Operational Excellence, Delivered.</h1>
       <p>Your central hub for managing dispatch, tracking routes, and ensuring seamless delivery performance.</p>
     </header>
 
-    <!-- Main Content Area with Cards -->
+    <!-- Main Content -->
     <main class="content-wrapper">
       <div class="section-header">
           <h2>Management Tools</h2>
       </div>
-
       <div class="card-container">
-        
-        <!-- Card for Rescue Log -->
+        <!-- Cards for other pages -->
         <a href="RescueLog.html" class="info-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1614728263952-84ea256ec346?q=80&w=1974&auto=format&fit=crop')"></div>
-          <div class="card-content">
-              <h3>Rescue Log</h3>
-              <p>Manage daily dispatch tasks, from sweepers to ad-hocs, ensuring every driver is accounted for.</p>
-          </div>
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1614728263952-84ea256ec346?q=80&w=1974&auto=format&fit=crop')"></div>
+            <div class="card-content">
+                <h3>Rescue Log</h3>
+                <p>Manage daily dispatch tasks, from sweepers to ad-hocs, ensuring every driver is accounted for.</p>
+            </div>
         </a>
-
-        <!-- Card for Weekly TBA Log -->
         <a href="WeeklyTBA.html" class="info-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop')"></div>
-          <div class="card-content">
-              <h3>Weekly TBA Log</h3>
-              <p>Upload and review weekly TBA files to keep track of unassigned packages and route planning.</p>
-          </div>
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop')"></div>
+            <div class="card-content">
+                <h3>Weekly TBA Log</h3>
+                <p>Upload and review weekly TBA files to keep track of unassigned packages and route planning.</p>
+            </div>
         </a>
-
-        <!-- Card for Contact & Support -->
         <a href="#" class="info-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=1974&auto=format&fit=crop')"></div>
-          <div class="card-content">
-              <h3>Contact & Support</h3>
-              <p>Access contact information for team leads and support for immediate assistance.</p>
-          </div>
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=1974&auto=format&fit=crop')"></div>
+            <div class="card-content">
+                <h3>Contact & Support</h3>
+                <p>Access contact information for team leads and support for immediate assistance.</p>
+            </div>
         </a>
-
       </div>
     </main>
+    
+    <!-- New Live Feed Section -->
+    <section class="live-feed-section">
+        <div class="feed-container">
+            <div class="section-header">
+                <h2>Live Activity Feed</h2>
+            </div>
+            <div class="feed-ticker-wrap">
+                <ul v-if="liveFeedItems.length">
+                    <!-- Duplicate the list for a seamless scroll effect -->
+                    <li v-for="item in liveFeedItems" :key="item.section + '1'">
+                        <span class="feed-section">{{ item.section }}:</span>
+                        <span class="feed-notes">{{ item.notes }}</span>
+                        <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
+                    </li>
+                    <li v-for="item in liveFeedItems" :key="item.section + '2'">
+                        <span class="feed-section">{{ item.section }}:</span>
+                        <span class="feed-notes">{{ item.notes }}</span>
+                        <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
+                    </li>
+                </ul>
+                <div v-else>
+                    <p style="text-align: center;">No activity recorded yet. Go to the Rescue Log to add entries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <footer>
         <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
     </footer>
-
   </div>
 </body>
 </html>

@@ -3,70 +3,242 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weekly TBA</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Weekly TBA Log - Gold Wing Delivery</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Custom styles for the layout -->
+  <style>
+    :root {
+      --text-color: #333333;
+      --background-color: #ffffff;
+      --primary-color: #007bff;
+      --secondary-color: #f8f9fa;
+      --border-color: #dee2e6;
+    }
 
+    body {
+      margin: 0;
+      font-family: 'Lora', serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: var(--background-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .top-nav .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: var(--text-color);
+      margin-left: 30px;
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .signout-btn {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      height: 40vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-section h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 42px;
+    }
+    
+    /* Main content area */
+    .content-wrapper {
+        padding: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .upload-card {
+        background-color: var(--secondary-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .upload-card h2 {
+        font-family: 'Montserrat', sans-serif;
+        margin-top: 0;
+    }
+    
+    /* Custom styled file input */
+    .file-upload-label {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        transition: background-color 0.3s;
+    }
+    
+    .file-upload-label:hover {
+        background-color: #0056b3;
+    }
+    
+    input[type="file"] {
+        display: none; /* Hide the default ugly input */
+    }
+
+    /* Table styling */
+    .table-wrapper {
+        overflow-x: auto; /* For responsive tables */
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+    }
+    
+    .table-wrapper h4 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    thead th {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        background-color: var(--secondary-color);
+    }
+    
+    tbody tr:nth-child(even) {
+        background-color: var(--secondary-color);
+    }
+
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 60px;
+        background-color: var(--secondary-color);
+        border-top: 1px solid var(--border-color);
+    }
+  </style>
+  
   <!-- Vue 3 -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-  <!-- ✅ Correct SheetJS CDN (working) -->
+  <!-- SheetJS for Excel parsing -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-  <!-- Your script -->
+  <!-- Your existing script -->
   <script src="WeeklyTBA.js" defer></script>
 </head>
 <body>
-  <div id="app" class="layout">
-    <nav class="sidebar">
-      <h1>Gold Wing Delivery</h1>
-       <a href="HomePage.html">Home</a>
-      <a href="RescueLog.html">Rescue Log</a>
-      <a href="WeeklyTBA.html">Weekly TBA's</a>
-      <div class="spacer"></div>
-      <button @click="signOut" class="signout-btn">Sign Out</button>
+  <div id="app">
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+      <a href="HomePage.html" class="logo">Gold Wing</a>
+      <div class="nav-links">
+        <a href="HomePage.html">Home</a>
+        <a href="RescueLog.html">Rescue Log</a>
+        <a href="WeeklyTBA.html">Weekly TBA's</a>
+        <a href="#">Contact</a>
+        <button @click="signOut" class="signout-btn">Sign Out</button>
+      </div>
     </nav>
 
-    <div class="main-content">
-      <header>
-        <h2>Weekly TBA Log</h2>
-      </header>
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <h1>Weekly TBA Log</h1>
+    </header>
 
-      <main>
-        <section class="upload-section">
-  <h3>Upload Excel File</h3>
-  <input type="file" @change="handleFileUpload" accept=".xlsx" />
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+      <section class="upload-card">
+        <h2>Upload Weekly TBA File</h2>
+        <p>Select the .xlsx file from your computer to parse and display the data.</p>
+        <label for="file-upload" class="file-upload-label">
+            Choose File
+        </label>
+        <input id="file-upload" type="file" @change="handleFileUpload" accept=".xlsx" />
+      </section>
 
-  <div v-if="parsedData.length" class="table-wrapper">
-    <h4>Uploaded TBA Table</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>Driver</th>
-          <th>TBA</th>
-          <th>Status</th>
-          <th>Time</th>
-          <th>Route Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(row, i) in parsedData" :key="i">
-          <td>{{ row.DA }}</td>
-          <td>{{ row.TBA }}</td>
-          <td>{{ row.Status }}</td>
-          <td>{{ row.Time }}</td>
-          <td>{{ row.RouteNumber }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-      </main>
-
-      <footer>
-        <p>&copy; 2025 Gold Wing Delivery</p>
-      </footer>
-    </div>
+      <!-- Data Table -->
+      <div v-if="parsedData.length" class="table-wrapper">
+        <h4>Uploaded TBA Data</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Driver</th>
+              <th>TBA</th>
+              <th>Status</th>
+              <th>Time</th>
+              <th>Route Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row, i) in parsedData" :key="i">
+              <td>{{ row.DA }}</td>
+              <td>{{ row.TBA }}</td>
+              <td>{{ row.Status }}</td>
+              <td>{{ row.Time }}</td>
+              <td>{{ row.RouteNumber }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
+    </footer>
   </div>
 </body>
 </html>
