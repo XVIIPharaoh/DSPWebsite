@@ -3,46 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Basic Homepage</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Gold Wing Delivery</title>
+  
+  <!-- Google Fonts for better typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Custom styles for the new Squarespace-inspired layout -->
+  <style>
+    :root {
+      /* Define a new, more refined color palette */
+      --text-color: #333333;
+      --background-color: #ffffff;
+      --primary-color: #007bff; /* A modern, clean blue */
+      --secondary-color: #f8f9fa; /* Light grey for section backgrounds */
+      --border-color: #dee2e6;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Lora', serif; /* Elegant serif for body copy */
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: var(--background-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .top-nav .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      color: var(--text-color);
+      margin-left: 30px;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .signout-btn {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Hero Section with Background Image */
+    .hero-section {
+      height: 60vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero-section h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .hero-section p {
+      font-family: 'Lora', serif;
+      font-size: 20px;
+      max-width: 600px;
+      margin: 20px 0 0;
+    }
+
+    /* Content Section */
+    .content-wrapper {
+        padding: 60px 40px;
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .section-header h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 32px;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background-color: var(--secondary-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden; /* To contain the image */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .card-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card-content {
+        padding: 25px;
+    }
+
+    .info-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+    }
+
+    .info-card p {
+      line-height: 1.7;
+    }
+    
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 60px;
+        background-color: var(--secondary-color);
+        border-top: 1px solid var(--border-color);
+    }
+
+  </style>
+
   <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
-  <script src="HomePage.js" defer></script> <!-- separate script for homepage -->
+  <script src="HomePage.js" defer></script>
 </head>
 <body>
-  <div id="app" class="layout">
-    <nav class="sidebar">
-      <h1>Gold Wing Delivery</h1>
-      <a href="HomePage.html">Home</a>
-      <a href="RescueLog.html">Rescue Log</a>
-      <a href="WeeklyTBA.html">Weekly TBA's</a>
-      <button @click="signOut" class="signout-btn">Sign Out</button>
+  <div id="app">
+    <!-- New Top Navigation Bar -->
+    <nav class="top-nav">
+      <a href="#" class="logo">Gold Wing</a>
+      <div class="nav-links">
+        <a href="HomePage-Squarespace.html">Home</a>
+        <a href="RescueLog.html">Rescue Log</a>
+        <a href="WeeklyTBA.html">Weekly TBA's</a>
+        <a href="#">Contact</a>
+        <button @click="signOut" class="signout-btn">Sign Out</button>
+      </div>
     </nav>
 
+    <!-- New Hero Section -->
+    <header class="hero-section">
+      <h1>Operational Excellence, Delivered.</h1>
+      <p>Your central hub for managing dispatch, tracking routes, and ensuring seamless delivery performance.</p>
+    </header>
 
-    <div class="main-content">
-      <header>
-        <h2>Welcome!</h2>
-      </header>
+    <!-- Main Content Area with Cards -->
+    <main class="content-wrapper">
+      <div class="section-header">
+          <h2>Management Tools</h2>
+      </div>
 
-      <main>
-        <section class="intro">
-          <h2>Hello!</h2>
-          <p>This is a basic homepage built with HTML, CSS, JavaScript, and Vue.js.</p>
-        </section>
+      <div class="card-container">
+        
+        <!-- Card for Rescue Log -->
+        <a href="RescueLog.html" class="info-card">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1614728263952-84ea256ec346?q=80&w=1974&auto=format&fit=crop')"></div>
+          <div class="card-content">
+              <h3>Rescue Log</h3>
+              <p>Manage daily dispatch tasks, from sweepers to ad-hocs, ensuring every driver is accounted for.</p>
+          </div>
+        </a>
 
-        <section class="interactive">
-          <h3>Say something:</h3>
-          <input v-model="userMessage" placeholder="Type a message">
-          <p>You said: <strong>{{ userMessage }}</strong></p>
-        </section>
-      </main>
+        <!-- Card for Weekly TBA Log -->
+        <a href="WeeklyTBA.html" class="info-card">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop')"></div>
+          <div class="card-content">
+              <h3>Weekly TBA Log</h3>
+              <p>Upload and review weekly TBA files to keep track of unassigned packages and route planning.</p>
+          </div>
+        </a>
 
-      <footer>
-        <p>&copy; 2025 Gold Wing Delivery</p>
-      </footer>
-    </div>
+        <!-- Card for Contact & Support -->
+        <a href="#" class="info-card">
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=1974&auto=format&fit=crop')"></div>
+          <div class="card-content">
+              <h3>Contact & Support</h3>
+              <p>Access contact information for team leads and support for immediate assistance.</p>
+          </div>
+        </a>
+
+      </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
+    </footer>
+
   </div>
 </body>
-
 </html>
-
