@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Weekly TBA Log - Gold Wing Delivery</title>
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Custom styles for the layout -->
+
   <style>
     :root {
       --text-color: #333333;
@@ -18,6 +17,8 @@
       --primary-color: #007bff;
       --secondary-color: #f8f9fa;
       --border-color: #dee2e6;
+      --sidebar-bg: #212529;
+      --sidebar-text: #ffffff;
     }
 
     body {
@@ -27,47 +28,64 @@
       color: var(--text-color);
     }
 
-    /* Top Navigation Bar */
-    .top-nav {
+    .layout {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background-color: var(--background-color);
-      border-bottom: 1px solid var(--border-color);
+      height: 100vh;
     }
 
-    .top-nav .logo {
+    .sidebar {
+      width: 200px;
+      background-color: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .sidebar .logo {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 20px;
       text-decoration: none;
-      color: var(--text-color);
+      color: var(--sidebar-text);
+      margin-bottom: 20px;
     }
 
-    .nav-links a {
+    .sidebar .nav-links a {
       font-family: 'Montserrat', sans-serif;
       text-decoration: none;
-      color: var(--text-color);
-      margin-left: 30px;
-      font-size: 16px;
+      color: var(--sidebar-text);
+      display: block;
+      padding: 8px 0;
+      font-size: 15px;
+      border-radius: 5px;
+      transition: background-color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: var(--primary-color);
-    }
-    
-    .signout-btn {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 8px 16px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        font-family: 'Montserrat', sans-serif;
+    .sidebar .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
-    /* Hero Section */
+    .sidebar .signout-btn {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      width: 100%;
+      margin-top: auto;
+      font-size: 14px;
+    }
+
+    .page-content {
+      flex-grow: 1;
+      overflow-y: auto;
+      height: 100vh;
+    }
+
     .hero-section {
       height: 40vh;
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop');
@@ -78,167 +96,163 @@
       align-items: center;
       color: white;
       text-align: center;
+      padding: 0 20px;
     }
 
     .hero-section h1 {
       font-family: 'Montserrat', sans-serif;
       font-size: 42px;
     }
-    
-    /* Main content area */
+
     .content-wrapper {
-        padding: 40px;
-        max-width: 1200px;
-        margin: 0 auto;
+      padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    
+
     .upload-card {
-        background-color: var(--secondary-color);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 30px;
-        margin-bottom: 40px;
-        text-align: center;
+      background-color: var(--secondary-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
     .upload-card h2 {
-        font-family: 'Montserrat', sans-serif;
-        margin-top: 0;
-    }
-    
-    /* Custom styled file input */
-    .file-upload-label {
-        display: inline-block;
-        padding: 12px 25px;
-        background-color: var(--primary-color);
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        font-family: 'Montserrat', sans-serif;
-        transition: background-color 0.3s;
-    }
-    
-    .file-upload-label:hover {
-        background-color: #0056b3;
-    }
-    
-    input[type="file"] {
-        display: none; /* Hide the default ugly input */
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 0;
     }
 
-    /* Table styling */
-    .table-wrapper {
-        overflow-x: auto; /* For responsive tables */
-        background-color: var(--background-color);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 20px;
+    .file-upload-label {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s;
     }
-    
+
+    .file-upload-label:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      background-color: var(--background-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
     .table-wrapper h4 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
-        margin-top: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      margin-top: 0;
     }
 
     table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
     }
 
     th, td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid var(--border-color);
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
     }
-    
+
     thead th {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        text-transform: uppercase;
-        background-color: var(--secondary-color);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      background-color: var(--secondary-color);
     }
-    
+
     tbody tr:nth-child(even) {
-        background-color: var(--secondary-color);
+      background-color: var(--secondary-color);
     }
 
     footer {
-        text-align: center;
-        padding: 40px;
-        margin-top: 60px;
-        background-color: var(--secondary-color);
-        border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 40px;
+      margin-top: 60px;
+      background-color: var(--secondary-color);
+      border-top: 1px solid var(--border-color);
     }
   </style>
-  
-  <!-- Vue 3 -->
+
+  <!-- Vue 3 + SheetJS -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <!-- SheetJS for Excel parsing -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <!-- Your existing script -->
   <script src="WeeklyTBA.js" defer></script>
 </head>
 <body>
-  <div id="app">
-    <!-- Top Navigation Bar -->
-    <nav class="top-nav">
+  <div id="app" class="layout">
+    <!-- Sidebar -->
+    <nav class="sidebar">
       <a href="HomePage.html" class="logo">Gold Wing</a>
       <div class="nav-links">
         <a href="HomePage.html">Home</a>
         <a href="RescueLog.html">Rescue Log</a>
         <a href="WeeklyTBA.html">Weekly TBA's</a>
         <a href="RabbitList.html">Rabbit List</a>
-        <button @click="signOut" class="signout-btn">Sign Out</button>
       </div>
+      <button @click="signOut" class="signout-btn">Sign Out</button>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-section">
-      <h1>Weekly TBA Log</h1>
-    </header>
+    <!-- Page Content -->
+    <div class="page-content">
+      <!-- Hero -->
+      <header class="hero-section">
+        <h1>Weekly TBA Log</h1>
+      </header>
 
-    <!-- Main Content Area -->
-    <main class="content-wrapper">
-      <section class="upload-card">
-        <h2>Upload Weekly TBA File</h2>
-        <p>Select the .xlsx file from your computer to parse and display the data.</p>
-        <label for="file-upload" class="file-upload-label">
-            Choose File
-        </label>
-        <input id="file-upload" type="file" @change="handleFileUpload" accept=".xlsx" />
-      </section>
+      <!-- Main Content -->
+      <main class="content-wrapper">
+        <section class="upload-card">
+          <h2>Upload Weekly TBA File</h2>
+          <p>Select the .xlsx file from your computer to parse and display the data.</p>
+          <label for="file-upload" class="file-upload-label">Choose File</label>
+          <input id="file-upload" type="file" @change="handleFileUpload" accept=".xlsx" />
+        </section>
 
-      <!-- Data Table -->
-      <div v-if="parsedData.length" class="table-wrapper">
-        <h4>Uploaded TBA Data</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Driver</th>
-              <th>TBA</th>
-              <th>Status</th>
-              <th>Time</th>
-              <th>Route Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(row, i) in parsedData" :key="i">
-              <td>{{ row.DA }}</td>
-              <td>{{ row.TBA }}</td>
-              <td>{{ row.Status }}</td>
-              <td>{{ row.Time }}</td>
-              <td>{{ row.RouteNumber }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
-    
-    <footer>
+        <div v-if="parsedData.length" class="table-wrapper">
+          <h4>Uploaded TBA Data</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Driver</th>
+                <th>TBA</th>
+                <th>Status</th>
+                <th>Time</th>
+                <th>Route Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(row, i) in parsedData" :key="i">
+                <td>{{ row.DA }}</td>
+                <td>{{ row.TBA }}</td>
+                <td>{{ row.Status }}</td>
+                <td>{{ row.Time }}</td>
+                <td>{{ row.RouteNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <footer>
         <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
-    </footer>
+      </footer>
+    </div>
   </div>
 </body>
 </html>

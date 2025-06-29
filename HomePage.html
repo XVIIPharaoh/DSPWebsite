@@ -13,9 +13,11 @@
   <style>
     :root {
       --text-color: #333333;
-      --background-color: #ffffff;
+      --sidebar-text: #ffffff;
+      --background-color: #f8f9fa;
       --primary-color: #007bff;
-      --secondary-color: #f8f9fa;
+      --sidebar-bg: #212529;
+      --secondary-color: #ffffff;
       --border-color: #dee2e6;
     }
 
@@ -26,40 +28,62 @@
       color: var(--text-color);
     }
 
-    .top-nav {
+    .app-layout {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background-color: var(--background-color);
-      border-bottom: 1px solid var(--border-color);
+      height: 100vh;
     }
 
-    .top-nav .logo {
+    .sidebar {
+      width: 200px;
+      background-color: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .sidebar .logo {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 20px;
       text-decoration: none;
-      color: var(--text-color);
+      color: var(--sidebar-text);
+      margin-bottom: 20px;
     }
 
-    .nav-links a {
+    .sidebar .nav-links a {
       font-family: 'Montserrat', sans-serif;
       text-decoration: none;
-      color: var(--text-color);
-      margin-left: 30px;
-      font-size: 16px;
+      color: var(--sidebar-text);
+      display: block;
+      padding: 8px 0;
+      font-size: 15px;
+      border-radius: 5px;
+      transition: background-color 0.2s;
     }
 
-    .signout-btn {
+    .sidebar .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar .signout-btn {
       background-color: var(--primary-color);
       color: white;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 5px;
       border: none;
       cursor: pointer;
       font-family: 'Montserrat', sans-serif;
-      margin-left: 30px;
+      width: 100%;
+      margin-top: auto;
+      font-size: 14px;
+    }
+
+    .page-content {
+      flex-grow: 1;
+      overflow-y: auto;
+      height: 100vh;
     }
 
     .hero-section {
@@ -143,9 +167,9 @@
     }
 
     .live-feed-section {
-      background-color: var(--secondary-color);
-      margin-top: 60px;
-      padding: 40px 0;
+      background-color: var(--background-color);
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0;
     }
 
     .feed-container {
@@ -221,92 +245,95 @@
   <script src="HomePage.js" defer></script>
 </head>
 <body>
-  <div id="app">
-    <!-- Navigation -->
-    <nav class="top-nav">
+  <div id="app" class="app-layout">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
       <a href="HomePage.html" class="logo">Gold Wing</a>
       <div class="nav-links">
         <a href="HomePage.html">Home</a>
         <a href="RescueLog.html">Rescue Log</a>
         <a href="WeeklyTBA.html">Weekly TBA's</a>
         <a href="RabbitList.html">Rabbit List</a>
-        <button @click="signOut" class="signout-btn">Sign Out</button>
       </div>
+      <button @click="signOut" class="signout-btn">Sign Out</button>
     </nav>
 
-    <!-- Hero -->
-    <header class="hero-section">
-      <h1>Operational Excellence, Delivered.</h1>
-      <p>Your central hub for managing dispatch, tracking routes, and ensuring seamless delivery performance.</p>
-    </header>
+    <!-- Page Content -->
+    <div class="page-content">
+      <!-- Hero -->
+      <header class="hero-section">
+        <h1>Operational Excellence, Delivered.</h1>
+        <p>Your central hub for managing dispatch, tracking routes, and ensuring seamless delivery performance.</p>
+      </header>
 
-    <!-- Main Content -->
-    <main class="content-wrapper">
-      <div class="section-header">
-        <h2>Management Tools</h2>
-      </div>
-      <div class="card-container">
-        <a href="RescueLog.html" class="info-card">
-          <div class="card-image" style="background-image: url('DSPImages/anirudh-wKeZstqxKTQ-unsplash.jpg')"></div>
-          <div class="card-content">
-            <h3>Rescue Log</h3>
-            <p>Manage daily dispatch tasks, from sweepers to ad-hocs, ensuring every driver is accounted for.</p>
-          </div>
-        </a>
-        <a href="WeeklyTBA.html" class="info-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop')"></div>
-          <div class="card-content">
-            <h3>Weekly TBA Log</h3>
-            <p>Upload and review weekly TBA files to keep track of unassigned packages and route planning.</p>
-          </div>
-        </a>
-        <a href="RabbitList.html" class="info-card">
-          <div class="card-image" style="background-image: url('DSPImages/pexels-pixabay-372166.jpg')"></div>
-          <div class="card-content">
-            <h3>Rabbit List</h3>
-            <p>Assign drivers and phones to vans and track clock-out times for daily routes.</p>
-          </div>
-        </a>
-        <a href="#" class="info-card">
-          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=1974&auto=format&fit=crop')"></div>
-          <div class="card-content">
-            <h3>Contact & Support</h3>
-            <p>Access contact information for team leads and support for immediate assistance.</p>
-          </div>
-        </a>
-      </div>
-    </main>
-
-    <!-- Live Feed -->
-    <section class="live-feed-section">
-      <div class="feed-container">
+      <!-- Main Content -->
+      <main class="content-wrapper">
         <div class="section-header">
-          <h2>Live Activity Feed</h2>
+          <h2>Management Tools</h2>
         </div>
-        <div class="feed-ticker-wrap">
-          <ul v-if="liveFeedItems.length">
-            <li v-for="item in liveFeedItems" :key="item.section + '1'">
-              <span class="feed-section">{{ item.section }}:</span>
-              <span class="feed-notes">{{ item.notes }}</span>
-              <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
-            </li>
-            <li v-for="item in liveFeedItems" :key="item.section + '2'">
-              <span class="feed-section">{{ item.section }}:</span>
-              <span class="feed-notes">{{ item.notes }}</span>
-              <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
-            </li>
-          </ul>
-          <div v-else>
-            <p style="text-align: center; line-height: 40px;">No activity recorded yet. Go to the Rescue Log to add entries.</p>
+        <div class="card-container">
+          <a href="RescueLog.html" class="info-card">
+            <div class="card-image" style="background-image: url('DSPImages/anirudh-wKeZstqxKTQ-unsplash.jpg')"></div>
+            <div class="card-content">
+              <h3>Rescue Log</h3>
+              <p>Manage daily dispatch tasks, from sweepers to ad-hocs, ensuring every driver is accounted for.</p>
+            </div>
+          </a>
+          <a href="WeeklyTBA.html" class="info-card">
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop')"></div>
+            <div class="card-content">
+              <h3>Weekly TBA Log</h3>
+              <p>Upload and review weekly TBA files to keep track of unassigned packages and route planning.</p>
+            </div>
+          </a>
+          <a href="RabbitList.html" class="info-card">
+            <div class="card-image" style="background-image: url('DSPImages/pexels-pixabay-372166.jpg')"></div>
+            <div class="card-content">
+              <h3>Rabbit List</h3>
+              <p>Assign drivers and phones to vans and track clock-out times for daily routes.</p>
+            </div>
+          </a>
+          <a href="#" class="info-card">
+            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=1974&auto=format&fit=crop')"></div>
+            <div class="card-content">
+              <h3>Contact & Support</h3>
+              <p>Access contact information for team leads and support for immediate assistance.</p>
+            </div>
+          </a>
+        </div>
+      </main>
+
+      <!-- Live Feed -->
+      <section class="live-feed-section">
+        <div class="feed-container">
+          <div class="section-header">
+            <h2>Live Activity Feed</h2>
+          </div>
+          <div class="feed-ticker-wrap">
+            <ul v-if="liveFeedItems.length">
+              <li v-for="item in liveFeedItems" :key="item.section + '1'">
+                <span class="feed-section">{{ item.section }}:</span>
+                <span class="feed-notes">{{ item.notes }}</span>
+                <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
+              </li>
+              <li v-for="item in liveFeedItems" :key="item.section + '2'">
+                <span class="feed-section">{{ item.section }}:</span>
+                <span class="feed-notes">{{ item.notes }}</span>
+                <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
+              </li>
+            </ul>
+            <div v-else>
+              <p style="text-align: center; line-height: 40px;">No activity recorded yet. Go to the Rescue Log to add entries.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
-    </footer>
+      <!-- Footer -->
+      <footer>
+        <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
+      </footer>
+    </div>
   </div>
 </body>
 </html>
