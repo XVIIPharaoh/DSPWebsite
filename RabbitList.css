@@ -1,0 +1,205 @@
+:root {
+  --text-color: #333333;
+  --background-color: #ffffff;
+  --primary-color: #007bff;
+  --secondary-color: #f8f9fa;
+  --border-color: #dee2e6;
+  --dark-text: #2c3e50;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lora', serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+/* Top Navigation Bar */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.top-nav .logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.nav-links a {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  color: var(--text-color);
+  margin-left: 30px;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.nav-links .signout-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 30px;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 40vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('DSPImages/pexels-onkel-ramirez-15362567-10963093.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+/* Main Content Wrapper */
+.content-wrapper {
+    padding: 40px;
+    max-width: 1400px; /* Wider for two tables */
+    margin: 0 auto;
+}
+
+.date-header {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: var(--dark-text);
+}
+
+/* Container for the two tables */
+.rabbit-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Styling for each table card */
+.table-wrapper {
+    flex: 1;
+    min-width: 500px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+thead th {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: var(--secondary-color);
+}
+
+.van-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--dark-text);
+}
+
+td select {
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.multi-select-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.multi-select-cell.phone-cell {
+    flex-direction: row;
+    align-items: center;
+}
+
+.phone-cell .separator {
+    padding: 0 5px;
+}
+
+.phone-cell select {
+    width: 70px !important; /* Fixed width for phone number dropdowns */
+}
+
+.clock-out-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.clock-out-time {
+    font-weight: bold;
+}
+
+/* Notes Section */
+.notes-wrapper {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.notes-wrapper h4 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 0;
+}
+
+.notes-wrapper textarea {
+    width: 100%;
+    min-height: 60px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    margin-top: 60px;
+    background-color: var(--secondary-color);
+    border-top: 1px solid var(--border-color);
+}

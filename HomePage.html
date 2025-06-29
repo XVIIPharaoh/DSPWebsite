@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gold Wing Delivery</title>
-  
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --text-color: #333333;
@@ -25,7 +26,6 @@
       color: var(--text-color);
     }
 
-    /* Top Navigation Bar */
     .top-nav {
       display: flex;
       justify-content: space-between;
@@ -50,21 +50,21 @@
       margin-left: 30px;
       font-size: 16px;
     }
-    
+
     .signout-btn {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 8px 16px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        font-family: 'Montserrat', sans-serif;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      margin-left: 30px;
     }
 
-    /* Hero Section */
     .hero-section {
       height: 60vh;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/DSPWebsite/DSPImages/boliviainteligente--nDhdxxOvgc-unsplash\ \(1\).jpg');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('DSPImages/boliviainteligente--nDhdxxOvgc-unsplash (1).jpg');
       background-size: cover;
       background-position: center;
       display: flex;
@@ -87,22 +87,20 @@
       margin-top: 20px;
     }
 
-    /* Main Content */
     .content-wrapper {
-        padding: 60px 40px;
-    }
-    
-    .section-header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    
-    .section-header h2 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 32px;
+      padding: 60px 40px;
     }
 
-    /* Card Container for links */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+    }
+
     .card-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -127,15 +125,16 @@
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
-    
+
     .card-image {
-        height: 200px;
-        background-size: cover;
-        background-position: center;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--secondary-color);
     }
 
     .card-content {
-        padding: 25px;
+      padding: 25px;
     }
 
     .info-card h3 {
@@ -143,98 +142,99 @@
       font-size: 22px;
     }
 
-    /* --- NEW LIVE FEED STYLES --- */
     .live-feed-section {
-        background-color: var(--secondary-color);
-        margin-top: 60px;
-        padding: 40px 0;
+      background-color: var(--secondary-color);
+      margin-top: 60px;
+      padding: 40px 0;
     }
 
     .feed-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
     }
 
     .feed-ticker-wrap {
-        height: 40px; /* Height of a single feed item */
-        overflow: hidden;
-        position: relative;
-        background-color: white;
-        border-radius: 5px;
-        border: 1px solid var(--border-color);
+      height: 40px;
+      overflow: hidden;
+      position: relative;
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid var(--border-color);
     }
-    
+
     .feed-ticker-wrap ul {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-        position: absolute;
-        width: 100%;
-        animation: ticker-scroll 20s linear infinite; /* Adjust duration for speed */
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      position: absolute;
+      width: 100%;
+      animation: ticker-scroll 20s linear infinite;
     }
 
     .feed-ticker-wrap:hover ul {
-        animation-play-state: paused; /* Pause scrolling on hover */
+      animation-play-state: paused;
     }
 
     .feed-ticker-wrap li {
-        height: 40px;
-        line-height: 40px;
-        padding: 0 15px;
-        font-family: 'Montserrat', sans-serif;
-        display: flex;
-        justify-content: space-between;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 15px;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: space-between;
     }
-    
-    .feed-ticker-wrap .feed-section {
-        font-weight: bold;
-        color: var(--primary-color);
+
+    .feed-section {
+      font-weight: bold;
+      color: var(--primary-color);
     }
-    
-    .feed-ticker-wrap .feed-notes {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        margin: 0 15px;
+
+    .feed-notes {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 0 15px;
+      flex-grow: 1;
     }
-    
-    .feed-ticker-wrap .feed-dispatcher {
-        color: #6c757d;
+
+    .feed-dispatcher {
+      color: #6c757d;
+      white-space: nowrap;
     }
 
     @keyframes ticker-scroll {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-100%); }
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
     }
-    
+
     footer {
-        text-align: center;
-        padding: 40px;
-        background-color: var(--secondary-color);
-        border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 40px;
+      background-color: var(--secondary-color);
+      border-top: 1px solid var(--border-color);
     }
   </style>
 
+  <!-- Vue + JS -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
-  <!-- IMPORTANT: This now points to the new JS file -->
   <script src="HomePage.js" defer></script>
 </head>
 <body>
   <div id="app">
-    <!-- Top Navigation -->
+    <!-- Navigation -->
     <nav class="top-nav">
-        <a href="HomePage.html" class="logo">Gold Wing</a>
-        <div class="nav-links">
-            <a href="HomePage.html">Home</a>
-            <a href="RescueLog.html">Rescue Log</a>
-            <a href="WeeklyTBA.html">Weekly TBA's</a>
-            <a href="#">Contact</a>
-            <button @click="signOut" class="signout-btn">Sign Out</button>
-        </div>
+      <a href="HomePage.html" class="logo">Gold Wing</a>
+      <div class="nav-links">
+        <a href="HomePage.html">Home</a>
+        <a href="RescueLog.html">Rescue Log</a>
+        <a href="WeeklyTBA.html">Weekly TBA's</a>
+        <a href="RabbitList.html">Rabbit List</a>
+        <button @click="signOut" class="signout-btn">Sign Out</button>
+      </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <header class="hero-section">
       <h1>Operational Excellence, Delivered.</h1>
       <p>Your central hub for managing dispatch, tracking routes, and ensuring seamless delivery performance.</p>
@@ -243,63 +243,69 @@
     <!-- Main Content -->
     <main class="content-wrapper">
       <div class="section-header">
-          <h2>Management Tools</h2>
+        <h2>Management Tools</h2>
       </div>
       <div class="card-container">
-        <!-- Cards for other pages -->
         <a href="RescueLog.html" class="info-card">
-            <div class="card-image" style="background-image: url('/DSPWebsite/DSPImages/anirudh-wKeZstqxKTQ-unsplash.jpg')"></div>
-            <div class="card-content">
-                <h3>Rescue Log</h3>
-                <p>Manage daily dispatch tasks, from sweepers to ad-hocs, ensuring every driver is accounted for.</p>
-            </div>
+          <div class="card-image" style="background-image: url('DSPImages/anirudh-wKeZstqxKTQ-unsplash.jpg')"></div>
+          <div class="card-content">
+            <h3>Rescue Log</h3>
+            <p>Manage daily dispatch tasks, from sweepers to ad-hocs, ensuring every driver is accounted for.</p>
+          </div>
         </a>
         <a href="WeeklyTBA.html" class="info-card">
-            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop')"></div>
-            <div class="card-content">
-                <h3>Weekly TBA Log</h3>
-                <p>Upload and review weekly TBA files to keep track of unassigned packages and route planning.</p>
-            </div>
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop')"></div>
+          <div class="card-content">
+            <h3>Weekly TBA Log</h3>
+            <p>Upload and review weekly TBA files to keep track of unassigned packages and route planning.</p>
+          </div>
+        </a>
+        <a href="RabbitList.html" class="info-card">
+          <div class="card-image" style="background-image: url('DSPImages/pexels-pixabay-372166.jpg')"></div>
+          <div class="card-content">
+            <h3>Rabbit List</h3>
+            <p>Assign drivers and phones to vans and track clock-out times for daily routes.</p>
+          </div>
         </a>
         <a href="#" class="info-card">
-            <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=1974&auto=format&fit=crop')"></div>
-            <div class="card-content">
-                <h3>Contact & Support</h3>
-                <p>Access contact information for team leads and support for immediate assistance.</p>
-            </div>
+          <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?q=80&w=1974&auto=format&fit=crop')"></div>
+          <div class="card-content">
+            <h3>Contact & Support</h3>
+            <p>Access contact information for team leads and support for immediate assistance.</p>
+          </div>
         </a>
       </div>
     </main>
-    
-    <!-- New Live Feed Section -->
+
+    <!-- Live Feed -->
     <section class="live-feed-section">
-        <div class="feed-container">
-            <div class="section-header">
-                <h2>Live Activity Feed</h2>
-            </div>
-            <div class="feed-ticker-wrap">
-                <ul v-if="liveFeedItems.length">
-                    <!-- Duplicate the list for a seamless scroll effect -->
-                    <li v-for="item in liveFeedItems" :key="item.section + '1'">
-                        <span class="feed-section">{{ item.section }}:</span>
-                        <span class="feed-notes">{{ item.notes }}</span>
-                        <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
-                    </li>
-                    <li v-for="item in liveFeedItems" :key="item.section + '2'">
-                        <span class="feed-section">{{ item.section }}:</span>
-                        <span class="feed-notes">{{ item.notes }}</span>
-                        <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
-                    </li>
-                </ul>
-                <div v-else>
-                    <p style="text-align: center;">No activity recorded yet. Go to the Rescue Log to add entries.</p>
-                </div>
-            </div>
+      <div class="feed-container">
+        <div class="section-header">
+          <h2>Live Activity Feed</h2>
         </div>
+        <div class="feed-ticker-wrap">
+          <ul v-if="liveFeedItems.length">
+            <li v-for="item in liveFeedItems" :key="item.section + '1'">
+              <span class="feed-section">{{ item.section }}:</span>
+              <span class="feed-notes">{{ item.notes }}</span>
+              <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
+            </li>
+            <li v-for="item in liveFeedItems" :key="item.section + '2'">
+              <span class="feed-section">{{ item.section }}:</span>
+              <span class="feed-notes">{{ item.notes }}</span>
+              <span class="feed-dispatcher">({{ item.dispatcher }} at {{ item.time }})</span>
+            </li>
+          </ul>
+          <div v-else>
+            <p style="text-align: center; line-height: 40px;">No activity recorded yet. Go to the Rescue Log to add entries.</p>
+          </div>
+        </div>
+      </div>
     </section>
-    
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
+      <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
     </footer>
   </div>
 </body>
