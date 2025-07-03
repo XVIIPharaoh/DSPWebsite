@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activity Summary - Gold Wing</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <script src="SummaryPage.js" defer></script>
+</head>
+<body>
+  <div id="app" class="layout">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <a href="HomePage.html" class="logo">Gold Wing</a>
+      <div class="nav-links">
+        <a href="HomePage.html">Home</a>
+        <a href="RescueLog.html">Rescue Log</a>
+        <a href="WeeklyTBA.html">Weekly TBA's</a>
+        <a href="RabbitList.html">Rabbit List</a>
+        <a href="SummaryPage.html">Summary</a>
+      </div>
+      <button @click="signOut" class="signout-btn">Sign Out</button>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <header class="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop');">
+        <h1>Activity Summary</h1>
+      </header>
+
+      <main class="content-wrapper">
+        <div class="section-header">
+          <h2>Recent Updates</h2>
+        </div>
+        
+        <div class="summary-feed">
+          <div v-if="!summaryItems.length" class="no-activity">
+            <p>No recent activity has been saved.</p>
+            <p>Go to the Rescue Log or Rabbit List to save some data.</p>
+          </div>
+
+          <div v-for="item in summaryItems" :key="item.timestamp" class="summary-card">
+            <div class="summary-header">
+              <h3 class="summary-title">{{ item.type }}</h3>
+              <span class="summary-timestamp">{{ formatTimestamp(item.timestamp) }}</span>
+            </div>
+            <p class="summary-text">{{ item.summaryText }}</p>
+            <div class="summary-footer">
+              <a :href="item.link" class="summary-link-btn">View Full Log</a>
+            </div>
+          </div>
+        </div>
+      </main>
+      
+      <footer>
+          <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

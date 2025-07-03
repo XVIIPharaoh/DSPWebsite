@@ -10,11 +10,7 @@ createApp({
         "Daily Quality Metrics Check", "Daily Safety Check", "Roster", "Routes"
       ],
       dispatchers: ["None", "Shawn", "Tereque", "Adrian", "Robert", "Aaron", "Vida", "Monica", "Freddy"],
-      
-      // --- THIS IS THE FIX ---
-      // Initialize the 'entries' array with its full structure of 17 empty objects.
       entries: Array(17).fill().map(() => ({ time: "", notes: "", dispatcher: "" })),
-      
       showStatusMessage: false
     };
   },
@@ -31,25 +27,49 @@ createApp({
       this.entries[index].time = `${hours}:${minutes}`;
     },
     saveAllEntries() {
-      // Filter out any entries that are completely empty
+      // --- Main data saving ---
       const entriesToSave = this.entries
-        .map((entry, index) => ({ ...entry, section: this.sections[index] })) // Add section title
+        .map((entry, index) => ({ ...entry, section: this.sections[index] }))
         .filter(entry => entry.time || entry.notes || entry.dispatcher);
-
-      // Save to localStorage
       localStorage.setItem('rescueLogData', JSON.stringify(entriesToSave));
 
-      // Show a confirmation message
+      // --- NEW: Summary data saving ---
+      this.saveSummary(entriesToSave);
+
+      // --- Show confirmation message ---
       this.showStatusMessage = true;
       setTimeout(() => {
         this.showStatusMessage = false;
-      }, 2000); // Hide after 2 seconds
+      }, 2000);
+    },
+    saveSummary(savedEntries) {
+      if (savedEntries.length === 0) return;
+
+      // Create a summary text
+      const updatedSections = savedEntries.map(e => e.section);
+      let summaryText = `Updated ${updatedSections.slice(0, 2).join(', ')}`;
+      if (updatedSections.length > 2) {
+        summaryText += ` and ${updatedSections.length - 2} other sections.`;
+      } else {
+        summaryText += '.';
+      }
+
+      // Create the new summary object
+      const newSummary = {
+        type: 'Rescue Log',
+        timestamp: new Date().toISOString(),
+        summaryText: summaryText,
+        link: 'RescueLog.html'
+      };
+
+      // Get existing feed, add new item, and save
+      const feed = JSON.parse(localStorage.getItem('activitySummaryFeed') || '[]');
+      feed.unshift(newSummary); // Add to the beginning
+      localStorage.setItem('activitySummaryFeed', JSON.stringify(feed));
     },
     loadEntries() {
       const savedData = localStorage.getItem('rescueLogData');
       const loadedEntries = savedData ? JSON.parse(savedData) : [];
-
-      // Re-create the full 17-entry structure, populating it with saved data
       this.entries = this.sections.map((sectionName) => {
         const foundEntry = loadedEntries.find(e => e.section === sectionName);
         return {
@@ -60,7 +80,6 @@ createApp({
       });
     }
   },
-  // This is a lifecycle hook that runs when the Vue app is ready
   mounted() {
     this.loadEntries();
   }

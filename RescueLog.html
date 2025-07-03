@@ -215,6 +215,27 @@
       opacity: 1;
     }
 
+    .scroll-bottom-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1000;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .scroll-bottom-btn:hover {
+      background-color: #0056b3;
+    }
+
     footer {
       text-align: center;
       padding: 40px;
@@ -229,26 +250,23 @@
 </head>
 <body>
   <div id="app" class="layout">
-    <!-- Sidebar -->
     <nav class="sidebar">
       <a href="HomePage.html" class="logo">Gold Wing</a>
       <div class="nav-links">
-        <a href="HomePage.html">Home</a>
+         <a href="HomePage.html">Home</a>
         <a href="RescueLog.html">Rescue Log</a>
         <a href="WeeklyTBA.html">Weekly TBA's</a>
         <a href="RabbitList.html">Rabbit List</a>
+        <a href="SummaryPage.html">Summary</a>
       </div>
       <button @click="signOut" class="signout-btn">Sign Out</button>
     </nav>
 
-    <!-- Page Content -->
     <div class="page-content">
-      <!-- Hero -->
       <header class="hero-section">
         <h1>Daily Rescue Log</h1>
       </header>
 
-      <!-- Main Section -->
       <main class="content-wrapper">
         <div v-for="(label, index) in sections" :key="index" class="log-entry-card">
           <h2>{{ label }}</h2>
@@ -271,7 +289,6 @@
           </div>
         </div>
 
-        <!-- Save Button & Message -->
         <div class="save-footer">
           <button @click="saveAllEntries" class="save-all-btn">Save All Entries</button>
           <div class="status-message" :class="{ visible: showStatusMessage }">
@@ -280,7 +297,10 @@
         </div>
       </main>
 
-      <!-- Footer -->
+      <button v-show="showScrollButton" @click="scrollToBottom" class="scroll-bottom-btn">
+        ⬇ Scroll to Bottom
+      </button>
+
       <footer>
         <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
       </footer>

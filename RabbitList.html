@@ -5,143 +5,129 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rabbit List - Gold Wing Delivery</title>
   
-  <!-- Google Fonts for the new design -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Links to the specific styles for this new page -->
-  <link rel="stylesheet" href="RabbitList.css">
+  <link rel="stylesheet" href="style.css">
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
   <script src="RabbitList.js" defer></script>
 </head>
 <body>
-  <div id="app">
-    <!-- Top Navigation Bar -->
-    <nav class="top-nav">
+  <div id="app" class="layout">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
       <a href="HomePage.html" class="logo">Gold Wing</a>
       <div class="nav-links">
         <a href="HomePage.html">Home</a>
         <a href="RescueLog.html">Rescue Log</a>
         <a href="WeeklyTBA.html">Weekly TBA's</a>
         <a href="RabbitList.html">Rabbit List</a>
-        <button @click="signOut" class="signout-btn">Sign Out</button>
+        <a href="SummaryPage.html">Summary</a>
       </div>
+      <button @click="signOut" class="signout-btn">Sign Out</button>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-section">
-      <h1>Rabbit List</h1>
-    </header>
+    <!-- Page Content -->
+    <div class="page-content">
+      <header class="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('DSPImages/pexels-onkel-ramirez-15362567-10963093.jpg');">
+        <h1>Rabbit List</h1>
+      </header>
 
-    <!-- Main Content Area -->
-    <main class="content-wrapper">
-      <div class="date-header">
-        <h3>{{ currentDate }}</h3>
-      </div>
-      
-      <!-- Container for the two side-by-side tables -->
-      <div class="rabbit-list-container">
-        <!-- Left Table Card -->
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Van</th>
-                <th>Driver</th>
-                <th>Phone</th>
-                <th>Clock Out</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="van in vanList1" :key="van.name">
-                <td class="van-name">{{ van.name }}</td>
-                <td class="driver-cell">
-                  <select v-model="van.driver1" aria-label="Select Driver 1"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
-                  <select v-if="van.showDriver2" v-model="van.driver2" aria-label="Select Driver 2"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
-                  <button v-if="!van.showDriver2" @click="van.showDriver2 = true" class="add-btn">+</button>
-                </td>
-                <td class="phone-cell">
-                  <select v-model="van.phone1" aria-label="Select Phone 1"><option value="">...</option><option v-for="n in phoneNumbers" :value="n">{{ n }}</option></select>
-                   <button v-if="!van.showPhone2" @click="van.showPhone2 = true" class="add-btn">+</button>
-                   <div v-if="van.showPhone2" class="phone-group">
-                    <span class="separator">/</span>
-                    <select v-model="van.phone2" aria-label="Select Phone 2"><option value="">...</option><option v-for="n in phoneNumbers" :value="n">{{ n }}</option></select>
-                   </div>
-                </td>
-                <td class="clock-out-cell">
-                  <!-- Clock out for Driver 1 -->
-                  <div class="clock-out-group">
-                    <button v-if="!van.clockOutTime1" @click="clockOut(van, 1)" class="clock-out-btn">Clock Out</button>
-                    <span v-else class="clock-out-time">{{ van.clockOutTime1 }}</span>
-                  </div>
-                  <!-- Clock out for Driver 2 (only if shown and selected) -->
-                  <div v-if="van.showDriver2 && van.driver2" class="clock-out-group">
-                    <button v-if="!van.clockOutTime2" @click="clockOut(van, 2)" class="clock-out-btn">Clock Out</button>
-                    <span v-else class="clock-out-time">{{ van.clockOutTime2 }}</span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <main class="content-wrapper">
+        <div class="date-header">
+          <h3>{{ currentDate }}</h3>
         </div>
+        
+        <div class="rabbit-list-container">
+          <!-- Left Table Card -->
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Van</th>
+                  <th>Driver</th>
+                  <th>Phone</th>
+                  <th>Clock Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="van in vanList1" :key="van.name">
+                  <td class="van-name">{{ van.name }}</td>
+                  <td class="driver-cell">
+                    <select v-model="van.driver1" aria-label="Select Driver 1"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
+                    <select v-if="van.showDriver2" v-model="van.driver2" aria-label="Select Driver 2"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
+                    <button v-if="!van.showDriver2" @click="van.showDriver2 = true" class="add-btn">+</button>
+                  </td>
+                  <td class="phone-cell">
+                    <select v-model="van.phone1" aria-label="Select Phone 1"><option value="">...</option><option v-for="n in phoneNumbers" :value="n">{{ n }}</option></select>
+                    <select v-model="van.phone2" aria-label="Select Phone 2"><option value="">...</option><option v-for="n in phoneNumbers" :value="n">{{ n }}</option></select>
+                  </td>
+                  <td class="clock-out-cell">
+                    <div v-if="van.driver1">
+                      <button v-if="!van.clockOutTime1" @click="clockOut(van, 1)" class="clock-out-btn">Clock Out</button>
+                      <span v-else class="clock-out-time">{{ van.clockOutTime1 }}</span>
+                    </div>
+                    <div v-if="van.showDriver2 && van.driver2">
+                      <button v-if="!van.clockOutTime2" @click="clockOut(van, 2)" class="clock-out-btn">Clock Out</button>
+                      <span v-else class="clock-out-time">{{ van.clockOutTime2 }}</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <!-- Right Table Card -->
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Van</th>
-                <th>Driver</th>
-                <th>Phone</th>
-                <th>Clock Out</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="van in vanList2" :key="van.name">
-                <td class="van-name">{{ van.name }}</td>
-                <td class="driver-cell">
-                  <select v-model="van.driver1" aria-label="Select Driver 1"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
-                  <select v-if="van.showDriver2" v-model="van.driver2" aria-label="Select Driver 2"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
-                   <button v-if="!van.showDriver2" @click="van.showDriver2 = true" class="add-btn">+</button>
-                </td>
-                <td class="phone-cell">
-                  <select v-model="van.phone1" aria-label="Select Phone 1"><option value="">...</option><option v-for="n in phoneNumbers" :value="n">{{ n }}</option></select>
-                   <button v-if="!van.showPhone2" @click="van.showPhone2 = true" class="add-btn">+</button>
-                   <div v-if="van.showPhone2" class="phone-group">
-                    <span class="separator">/</span>
+          <!-- Right Table Card -->
+          <div class="table-wrapper">
+             <table>
+              <thead>
+                <tr>
+                  <th>Van</th>
+                  <th>Driver</th>
+                  <th>Phone</th>
+                  <th>Clock Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="van in vanList2" :key="van.name">
+                  <td class="van-name">{{ van.name }}</td>
+                  <td class="driver-cell">
+                    <select v-model="van.driver1" aria-label="Select Driver 1"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
+                    <select v-if="van.showDriver2" v-model="van.driver2" aria-label="Select Driver 2"><option value="">Select...</option><option v-for="driver in drivers" :value="driver">{{ driver }}</option></select>
+                    <button v-if="!van.showDriver2" @click="van.showDriver2 = true" class="add-btn">+</button>
+                  </td>
+                  <td class="phone-cell">
+                    <select v-model="van.phone1" aria-label="Select Phone 1"><option value="">...</option><option v-for="n in phoneNumbers" :value="n">{{ n }}</option></select>
                     <select v-model="van.phone2" aria-label="Select Phone 2"><option value="">...</option><option v-for="n in phoneNumbers" :value="n">{{ n }}</option></select>
-                   </div>
-                </td>
-                <td class="clock-out-cell">
-                  <!-- Clock out for Driver 1 -->
-                  <div class="clock-out-group">
-                    <button v-if="!van.clockOutTime1" @click="clockOut(van, 1)" class="clock-out-btn">Clock Out</button>
-                    <span v-else class="clock-out-time">{{ van.clockOutTime1 }}</span>
-                  </div>
-                  <!-- Clock out for Driver 2 (only if shown and selected) -->
-                  <div v-if="van.showDriver2 && van.driver2" class="clock-out-group">
-                    <button v-if="!van.clockOutTime2" @click="clockOut(van, 2)" class="clock-out-btn">Clock Out</button>
-                    <span v-else class="clock-out-time">{{ van.clockOutTime2 }}</span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                  <td class="clock-out-cell">
+                    <div v-if="van.driver1">
+                      <button v-if="!van.clockOutTime1" @click="clockOut(van, 1)" class="clock-out-btn">Clock Out</button>
+                      <span v-else class="clock-out-time">{{ van.clockOutTime1 }}</span>
+                    </div>
+                    <div v-if="van.showDriver2 && van.driver2">
+                      <button v-if="!van.clockOutTime2" @click="clockOut(van, 2)" class="clock-out-btn">Clock Out</button>
+                      <span v-else class="clock-out-time">{{ van.clockOutTime2 }}</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+        
+        <section class="notes-wrapper">
+            <h4>PARKED BY RDGL NOTES:</h4>
+            <textarea v-model="notes" placeholder="Enter notes here..."></textarea>
+        </section>
+      </main>
       
-      <!-- Notes Section -->
-      <section class="notes-wrapper">
-          <h4>PARKED BY RDGL NOTES:</h4>
-          <textarea v-model="notes" placeholder="Enter notes here..."></textarea>
-      </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
-    </footer>
+      <footer>
+          <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
+      </footer>
+    </div>
   </div>
 </body>
 </html>
