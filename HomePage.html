@@ -5,252 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gold Wing Delivery</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 
-  <style>
-    :root {
-      --text-color: #333333;
-      --sidebar-text: #ffffff;
-      --background-color: #f8f9fa;
-      --primary-color: #007bff;
-      --sidebar-bg: #212529;
-      --secondary-color: #ffffff;
-      --border-color: #dee2e6;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Lora', serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
-    }
-
-    .app-layout {
-      display: flex;
-      height: 100vh;
-    }
-
-    .sidebar {
-      width: 200px;
-      background-color: var(--sidebar-bg);
-      color: var(--sidebar-text);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      flex-shrink: 0;
-    }
-
-    .sidebar .logo {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      text-decoration: none;
-      color: var(--sidebar-text);
-      margin-bottom: 20px;
-    }
-
-    .sidebar .nav-links a {
-      font-family: 'Montserrat', sans-serif;
-      text-decoration: none;
-      color: var(--sidebar-text);
-      display: block;
-      padding: 8px 0;
-      font-size: 15px;
-      border-radius: 5px;
-      transition: background-color 0.2s;
-    }
-
-    .sidebar .nav-links a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .sidebar .signout-btn {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 8px 14px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Montserrat', sans-serif;
-      width: 100%;
-      margin-top: auto;
-      font-size: 14px;
-    }
-
-    .page-content {
-      flex-grow: 1;
-      overflow-y: auto;
-      height: 100vh;
-    }
-
-    .hero-section {
-      height: 60vh;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('DSPImages/boliviainteligente--nDhdxxOvgc-unsplash (1).jpg');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 0 20px;
-    }
-
-    .hero-section h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 48px;
-    }
-
-    .hero-section p {
-      font-size: 20px;
-      max-width: 600px;
-      margin-top: 20px;
-    }
-
-    .content-wrapper {
-      padding: 60px 40px;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-header h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 32px;
-    }
-
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .info-card {
-      background-color: var(--secondary-color);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.3s, box-shadow 0.3s;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .info-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .card-image {
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-      background-color: var(--secondary-color);
-    }
-
-    .card-content {
-      padding: 25px;
-    }
-
-    .info-card h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 22px;
-    }
-
-    .live-feed-section {
-      background-color: var(--background-color);
-      border-top: 1px solid var(--border-color);
-      padding: 60px 0;
-    }
-
-    .feed-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    .feed-ticker-wrap {
-      height: 40px;
-      overflow: hidden;
-      position: relative;
-      background-color: white;
-      border-radius: 5px;
-      border: 1px solid var(--border-color);
-    }
-
-    .feed-ticker-wrap ul {
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-      position: absolute;
-      width: 100%;
-      animation: ticker-scroll 20s linear infinite;
-    }
-
-    .feed-ticker-wrap:hover ul {
-      animation-play-state: paused;
-    }
-
-    .feed-ticker-wrap li {
-      height: 40px;
-      line-height: 40px;
-      padding: 0 15px;
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .feed-section {
-      font-weight: bold;
-      color: var(--primary-color);
-    }
-
-    .feed-notes {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      margin: 0 15px;
-      flex-grow: 1;
-    }
-
-    .feed-dispatcher {
-      color: #6c757d;
-      white-space: nowrap;
-    }
-
-    @keyframes ticker-scroll {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      background-color: var(--secondary-color);
-      border-top: 1px solid var(--border-color);
-    }
-  </style>
-
-  <!-- Vue + JS -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
   <script src="HomePage.js" defer></script>
 </head>
 <body>
-  <div id="app" class="app-layout">
-    <!-- Sidebar Navigation -->
+  <div id="app" class="layout">
     <nav class="sidebar">
       <a href="HomePage.html" class="logo">Gold Wing</a>
       <div class="nav-links">
-         <a href="HomePage.html">Home</a>
+        <a href="HomePage.html">Home</a>
         <a href="RescueLog.html">Rescue Log</a>
         <a href="WeeklyTBA.html">Weekly TBA's</a>
         <a href="RabbitList.html">Rabbit List</a>
@@ -259,15 +28,12 @@
       <button @click="signOut" class="signout-btn">Sign Out</button>
     </nav>
 
-    <!-- Page Content -->
     <div class="page-content">
-      <!-- Hero -->
-      <header class="hero-section">
+      <header class="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('DSPImages/boliviainteligente--nDhdxxOvgc-unsplash (1).jpg');">
         <h1>Operational Excellence, Delivered.</h1>
         <p>Your central hub for managing dispatch, tracking routes, and ensuring seamless delivery performance.</p>
       </header>
 
-      <!-- Main Content -->
       <main class="content-wrapper">
         <div class="section-header">
           <h2>Management Tools</h2>
@@ -304,7 +70,6 @@
         </div>
       </main>
 
-      <!-- Live Feed -->
       <section class="live-feed-section">
         <div class="feed-container">
           <div class="section-header">
@@ -330,7 +95,6 @@
         </div>
       </section>
 
-      <!-- Footer -->
       <footer>
         <p>&copy; 2025 Gold Wing Delivery. All Rights Reserved.</p>
       </footer>
